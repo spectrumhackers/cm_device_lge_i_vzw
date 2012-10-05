@@ -1,0 +1,125 @@
+#
+# system.prop for VS920
+#
+
+service.adb.root=1
+
+
+# XXX: what is this?
+#persist.mvpdm.ProxyServerAddr=68.28.31.1
+#persist.mvpdm.ProxyServerIp=80
+
+ro.lge.proximity.delay=100
+
+# Radio
+mobiledata.interfaces=rmnet_sdio0,rmnet_sdio1
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+ro.telephony.default_network=8
+#ro.telephony.ril_class=LGEQualcommUiccRIL
+#ro.telephony.ril.v3=qcomuiccstack
+telephony.lteOnCDMADevice=1
+#gsm.version.baseband=APQ8060/MDM9200
+ro.ril.transmitpower=true
+# CDMA = 4
+ro.ril.def.preferred.network=4
+ro.telephony.default_network=4
+
+ro.cdma.voicemail.number=mine
+
+
+## Wifi
+#wlan.chip.vendor=brcm
+#wlan.chip.version=bcm4330x
+wifi.supplicant_scan_interval=20
+wifi.interface=wlan0
+
+## opengles 2.0
+ro.opengles.version=131072
+
+## audio
+persist.audio.handset.mic=digital
+
+## system prpo for sound exeption
+## seunghak.han@lge.com
+ro.lge.sound.case.exception=true
+
+## EAS Data encryption for VZW
+persist.sys.email.crypt=0
+persist.sys.email.crypt_ext=0
+persist.sys.email.crypt_mnt=0
+
+
+## Screen config
+ro.sf.lcd_density=320
+windowsmgr.max_events_per_sec=150
+debug.fb.rgb565=0
+debug.sf.hw=1
+debug.enabletr=true
+com.qc.hardware=true
+# XXX: p930 has =1, but we get errors due to missing /dev/pmem:
+# E/memalloc(  224): /dev/pmem: Failed to open pmem device: No such file or directory
+ro.sf.compbypass.enable=0
+
+persist.gps.qmienabled=true
+persist.service.main.enable=0
+persist.service.system.enable=0
+persist.service.radio.enable=0
+persist.service.events.enable=0
+
+ro.hdmi.enable=true
+com.qc.hdmi_out=true
+
+debug.performance.tuning=1
+#movfilter=40
+#move hyst=0
+
+# Faster transfer rate for net connections
+net.tcp.buffersize.default=4096,87380,256960,4096, 16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,163 84,256960
+
+#Improve Scrolling Build.prop Tweak
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+
+#Disable_ADB_Notification_Icon
+persist.adb.notify=0
+
+# Disable strict mode flash on display
+persist.sys.strictmode.visual=false
+
+## Dalvik
+dalvik.vm.lockprof.threshold=500
+dalvik.vm.dexopt-flags=m=y
+#dalvik.vm.dexopt-flags=m=y,u=n
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.execution-mode=int:jit
+
+# USB storage
+sys.usb.state=mass_storage,adb
+persist.sys.usb.config=mass_storage,adb
+
+# BT
+ro.bt.bdaddr_path=/data/misc/bd_addr
+
+ro.product.camera=i_vzw
+
+ro.use_data_netmgrd=true
+persist.data_netmgrd_mtu=1428
+ro.emmc.sdcard.partition=17
+ro.qualcomm.bluetooth.dun=true
+ro.qualcomm.bluetooth.ftp=true
+
+## QCOM CpuGovernorService
+dev.pm.dyn_samplingrate=1
+
+## system prop for sending power off request to RIL during phone shutdown
+ro.ril.shutdown=true
+
+#ro.config.vc_call_vol_steps=15
+#ro.HOME_APP_ADJ=1
+
+## Unknown/Other
+ro.setupwizard.enable_bypass=1
