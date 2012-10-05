@@ -97,28 +97,18 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_USE_PREBUILT_KERNEL := true
-BOARD_USE_ICS_KERNEL := true
 
 ifeq ($(BOARD_USE_PREBUILT_KERNEL),true)
-ifeq ($(BOARD_USE_ICS_KERNEL),true)
 # Prebuilt ICS kernel
 TARGET_PREBUILT_KERNEL_DIR := device/lge/VS920/kernels/ics
-else
-# Prebuilt GB kernel
-TARGET_PREBUILT_KERNEL_DIR := device/lge/VS920/kernels/gbplus
-endif
 else
 # Build kernel from source
 TARGET_KERNEL_SOURCE := kernel/lge/VS920
 TARGET_KERNEL_CONFIG := VS920_defconfig
 endif
 
-ifeq ($(BOARD_USE_ICS_KERNEL),true)
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom
 BOARD_FORCE_RAMDISK_ADDRESS := 0x41a00000
-else
-BOARD_KERNEL_CMDLINE := vmalloc=450M androidboot.hardware=qcom
-endif
 
 ifneq ($(TARGET_PREBUILT_KERNEL_DIR),)
 TARGET_PREBUILT_KERNEL := $(TARGET_PREBUILT_KERNEL_DIR)/kernel
