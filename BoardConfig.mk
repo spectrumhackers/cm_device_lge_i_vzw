@@ -1,4 +1,4 @@
-include vendor/lge/iproj/BoardConfigVendor.mk
+include vendor/lge/VS920/BoardConfigVendor.mk
 
 # Camera
 USE_CAMERA_STUB := true
@@ -28,15 +28,15 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 #BOARD_TOUCH_RECOVERY := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/lge/iproj/recovery/graphics.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/lge/VS920/recovery/graphics.c
 
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_ROTATOR_KERNEL_FORMATS -DHAVE_FM_RADIO -DWITH_QCOM_LPA -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/iproj/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/VS920/include
 
 # Egl
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/lge/iproj/configs/egl.cfg
+BOARD_EGL_CFG := device/lge/VS920/configs/egl.cfg
 
 # QCOM stuff
 BOARD_USES_QCOM_HARDWARE := true
