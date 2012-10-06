@@ -121,3 +121,7 @@ endif
 
 # On VS920 PlayfulGod's recovery identifies as "vs920" (?)
 TARGET_OTA_ASSERT_DEVICE := VS920,vs920
+
+# TWRP Settings
+DEVICE_RESOLUTION := 720x1280
+TW_NO_USB_STORAGE := true
