@@ -18,11 +18,13 @@ rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 ro.telephony.default_network=4
-#ro.telephony.ril_class=LGEQualcommUiccRIL
-#ro.telephony.ril.v3=qcomuiccstack
+ro.telephony.ril_class=LGEQualcommUiccRIL
+ro.telephony.ril.v3=qcomuiccstack
 telephony.lteOnCDMADevice=1
 #gsm.version.baseband=APQ8060/MDM9200
 ro.ril.transmitpower=true
+ro.ril.def.preferred.network=4
+
 
 
 ro.cdma.voicemail.number=mine
