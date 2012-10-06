@@ -104,7 +104,7 @@ TARGET_PREBUILT_KERNEL_DIR := device/lge/VS920/kernels/ics
 else
 # Build kernel from source
 TARGET_KERNEL_SOURCE := kernel/lge/VS920
-TARGET_KERNEL_CONFIG := VS920_defconfig
+TARGET_KERNEL_CONFIG := spectrum_defconfig
 endif
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom
