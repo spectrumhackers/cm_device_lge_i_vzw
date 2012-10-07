@@ -29,6 +29,10 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/prebuilt/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
 	$(LOCAL_PATH)/prebuilt/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh
 
+# Recovery
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
+	
 ## Configs
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/atcmd_virtual_kbd.kl:system/usr/keylayout/atcmd_virtual_kbd.kl \
