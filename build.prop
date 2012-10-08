@@ -46,7 +46,7 @@ service.adb.root=1
 ro.lge.proximity.delay=100
 
 # Radio
-mobiledata.interfaces=rmnet_sdio0,rmnet_sdio1
+#mobiledata.interfaces=rmnet_sdio0,rmnet_sdio1
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 
@@ -61,20 +61,15 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
 ro.HorizontalVVM=true
-ril.subscription.types=NV
+
+ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
-ro.telephony.default_network=4
+ro.telephony.default_network=8
 ro.telephony.ril_class=LGEQualcommUiccRIL
-ro.telephony.ril.v3=qcomuiccstack,signalstrength,icccardstatus
-ro.telephony.lteOnCDMADevice=1
 #gsm.version.baseband=APQ8060/MDM9200
 ro.ril.transmitpower=true
-ro.ril.def.preferred.network=4
-
-
 
 ro.cdma.voicemail.number=mine
-
 
 ## Wifi
 #wlan.chip.vendor=brcm
@@ -105,8 +100,6 @@ debug.fb.rgb565=0
 debug.sf.hw=1
 debug.enabletr=true
 com.qc.hardware=true
-# XXX: p930 has =1, but we get errors due to missing /dev/pmem:
-# E/memalloc(  224): /dev/pmem: Failed to open pmem device: No such file or directory
 ro.sf.compbypass.enable=0
 
 persist.gps.qmienabled=true
@@ -131,7 +124,7 @@ ro.max.fling_velocity=12000
 ro.min.fling_velocity=8000
 
 #Disable_ADB_Notification_Icon
-persist.adb.notify=0
+persist.adb.notify=1
 
 # Disable strict mode flash on display
 persist.sys.strictmode.visual=false

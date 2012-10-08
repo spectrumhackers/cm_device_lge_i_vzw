@@ -36,7 +36,6 @@ ro.telephony.ril.v3=signalstrength,icccardstatus
 ro.telephony.lteOnCDMADevice=1
 #gsm.version.baseband=APQ8060/MDM9200
 ro.ril.transmitpower=true
-ro.ril.def.preferred.network=8
 
 ro.cdma.voicemail.number=mine
 
