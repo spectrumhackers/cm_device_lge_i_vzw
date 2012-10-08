@@ -26,12 +26,6 @@ TARGET_SCORPION_BIONIC_PLDSIZE := 128
 
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Recovery
-BOARD_HAS_NO_SELECT_BUTTON := true
-#BOARD_TOUCH_RECOVERY := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/lge/VS920/recovery/recovery-gfx.c
-TARGET_PREBUILT_RECOVERY_KERNEL := device/lge/VS920/recovery/kernel
-
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_ROTATOR_KERNEL_FORMATS -DHAVE_FM_RADIO -DWITH_QCOM_LPA -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
 TARGET_SPECIFIC_HEADER_PATH := device/lge/VS920/include
@@ -70,7 +64,7 @@ WPA_SUPPLICANT_VERSION		:= VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER		:= NL80211
 BOARD_HOSTAPD_PRIVATE_LIB	:= lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE		:= bcmdhd
+BOARD_WLAN_DEVICE		    := bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM	:= "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA		:= "/system/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_P2P		:= "/system/etc/firmware/fw_bcmdhd_p2p.bin"
@@ -99,7 +93,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 # Kernel
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_USE_PREBUILT_KERNEL := true
+BOARD_USE_PREBUILT_KERNEL := false
 
 ifeq ($(BOARD_USE_PREBUILT_KERNEL),true)
 # Prebuilt ICS kernel
@@ -125,6 +119,6 @@ endif
 # On VS920 PlayfulGod's recovery identifies as "vs920" (?)
 TARGET_OTA_ASSERT_DEVICE := VS920,vs920
 
-# TWRP Settings
-DEVICE_RESOLUTION := 720x1280
-TW_NO_USB_STORAGE := true
+# Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_CUSTOM_GRAPHICS := ../../../device/lge/VS920/recovery/recovery-gfx.c
