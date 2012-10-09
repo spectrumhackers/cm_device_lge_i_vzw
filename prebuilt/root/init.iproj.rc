@@ -350,20 +350,13 @@ service dspcrashd /system/bin/dspcrashd
     user root
     group root
     disabled
-    
-#service hciattach /system/bin/sh /system/etc/init.bt.sh
-#    class late_start
-#    user bluetooth
-#    group qcom_oncrpc bluetooth net_bt_admin
-#    disabled
-#    oneshot
 
-##Blue-Z Verify add
-#service hciattach /system/bin/brcm_patchram_plus -d --enable_hci --baudrate 4000000 --patchram /system/bin/BCM4330B1_002.001.003.0006.0009.hcd /dev/ttyHS0
-#	user bluetooth
-#	group bluetooth net_bt_admin
-#	disabled
-#	oneshot
+service hciattach /system/bin/init.qcom.bt.sh
+    class main
+    #user bluetooth
+    group bluetooth net_bt_admin
+    # group qcom_oncrpc?
+    disabled
 
 #service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
 #    class late_start
