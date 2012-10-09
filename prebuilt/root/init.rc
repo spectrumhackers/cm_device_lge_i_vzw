@@ -300,6 +300,7 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
+    chmod 0444 /proc/cmdline
 
     # allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
