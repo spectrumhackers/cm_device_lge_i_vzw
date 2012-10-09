@@ -1,4 +1,4 @@
-include vendor/lge/VS920/BoardConfigVendor.mk
+include vendor/lge/i_vzw/BoardConfigVendor.mk
 
 # Camera
 USE_CAMERA_STUB := true
@@ -28,11 +28,11 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_ROTATOR_KERNEL_FORMATS -DHAVE_FM_RADIO -DWITH_QCOM_LPA -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/VS920/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/i_vzw/include
 
 # Egl
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/lge/VS920/configs/egl.cfg
+BOARD_EGL_CFG := device/lge/i_vzw/configs/egl.cfg
 
 # QCOM stuff
 BOARD_USES_QCOM_HARDWARE := true
@@ -97,10 +97,10 @@ BOARD_USE_PREBUILT_KERNEL := true
 
 ifeq ($(BOARD_USE_PREBUILT_KERNEL),true)
 # Prebuilt ICS kernel
-TARGET_PREBUILT_KERNEL_DIR := device/lge/VS920/kernels/ics
+TARGET_PREBUILT_KERNEL_DIR := device/lge/i_vzw/kernels/ics
 else
 # Build kernel from source
-TARGET_KERNEL_SOURCE := kernel/lge/VS920
+TARGET_KERNEL_SOURCE := kernel/lge/i_vzw
 TARGET_KERNEL_CONFIG := spectrum_defconfig
 endif
 
@@ -117,8 +117,8 @@ PRODUCT_COPY_FILES += \
 endif
 
 # On VS920 PlayfulGod's recovery identifies as "vs920" (?)
-TARGET_OTA_ASSERT_DEVICE := VS920,vs920
+TARGET_OTA_ASSERT_DEVICE := i_vzw,vs920
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/lge/VS920/recovery/recovery-gfx.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/lge/i_vzw/recovery/recovery-gfx.c

@@ -10,11 +10,11 @@ TARGET_BOOTANIMATION_NAME := vertical-720x1280
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/lge/VS920/full_VS920.mk)
+$(call inherit-product, device/lge/i_vzw/full_i_vzw.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := VS920
-PRODUCT_NAME := cm_VS920
+PRODUCT_DEVICE := i_vzw
+PRODUCT_NAME := cm_i_vzw
 PRODUCT_BRAND := Verizon
 PRODUCT_MODEL := VS920 4G
 PRODUCT_MANUFACTURER := LGE

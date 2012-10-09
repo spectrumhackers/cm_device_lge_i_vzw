@@ -15,7 +15,7 @@
 # limitations under the License.
 
 VENDOR=lge
-DEVICE=VS920
+DEVICE=i_vzw
 
 rm -rf ../../../vendor/$VENDOR/$DEVICE
 mkdir -p ../../../vendor/$VENDOR/$DEVICE/proprietary/bin

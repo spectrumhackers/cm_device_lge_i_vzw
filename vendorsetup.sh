@@ -1,1 +1,1 @@
-add_lunch_combo cm_VS920-userdebug
+add_lunch_combo cm_i_vzw-userdebug

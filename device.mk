@@ -7,12 +7,12 @@ $(call inherit-product, vendor/cm/config/common.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/lge/VS920/VS920-vendor.mk)
+$(call inherit-product-if-exists, vendor/lge/i_vzw/i_vzw-vendor.mk)
 
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-DEVICE_PACKAGE_OVERLAYS += device/lge/VS920/overlay
+DEVICE_PACKAGE_OVERLAYS += device/lge/i_vzw/overlay
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)

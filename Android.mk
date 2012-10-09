@@ -1,4 +1,4 @@
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),VS920)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),i_vzw)
 
 LOCAL_PATH := $(call my-dir)
 
