@@ -123,5 +123,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase=android-lge \
 	ro.com.google.clientidbase.gmm=android-lge \
 	gsm.operator.iso-country=us
-
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=Quattrimus
