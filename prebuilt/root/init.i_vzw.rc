@@ -1,0 +1,137 @@
+import init.iproj.rc
+import init.lge.rc
+
+on boot-pause
+    exec system/bin/battery_charging
+
+on init
+    setprop system_part_name	/dev/block/mmcblk0p26
+    setprop tombstone_part_name	/dev/block/mmcblk0p22
+    setprop data_part_name	/dev/block/mmcblk0p28
+    setprop persist_part_name	/dev/block/mmcblk0p12
+    setprop cache_part_name	/dev/block/mmcblk0p27
+    setprop mpt_part_name	/dev/block/mmcblk0p29
+    setprop drm_part_name	/dev/block/mmcblk0p23
+    setprop bsp_part_name	/dev/block/mmcblk0p20
+    setprop enc_part_name	/dev/block/mmcblk0p30
+
+    export system_part_name	/dev/block/mmcblk0p26
+    export tombstone_part_name	/dev/block/mmcblk0p22
+    export data_part_name	/dev/block/mmcblk0p28
+    export persist_part_name	/dev/block/mmcblk0p12
+    export cache_part_name	/dev/block/mmcblk0p27
+    export mpt_part_name	/dev/block/mmcblk0p29
+    export drm_part_name	/dev/block/mmcblk0p23 
+    export bsp_part_name	/dev/block/mmcblk0p20
+    export enc_part_name	/dev/block/mmcblk0p30
+
+on post-fs-data
+    chmod 0755 /system/bin/ssbd
+service ssbd /system/bin/ssbd # FEATURE_SDCARD_ENCRYPTION
+    class main
+    disabled
+
+on boot
+    chown system system  /dev/block/mmcblk0
+    chmod 0660 /dev/block/mmcblk0
+
+    #chown system system /sys/module/lge_emmc_direct_access/parameters/rooting_nv
+    #chmod 0660 /sys/module/lge_emmc_direct_access/parameters/rooting_nv
+
+    chown system system  /sys/module/lge_emmc_direct_access/parameters/eri_info
+    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/eri_info
+
+    chown system system /sys/module/lge_emmc_direct_access/parameters/cryptfs_cmd
+    chmod 0770 /sys/module/lge_emmc_direct_access/parameters/cryptfs_cmd
+
+    chown system system  /sys/module/lge_emmc_direct_access/parameters/bootcmd_write_block
+    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/bootcmd_write_block
+    # LGE_ERI_DOWNLOAD
+    mkdir /data/eri
+    chown radio radio /data/eri
+    chmod 0777 /data/eri
+    chown radio radio /data/eri/eri.bin
+    chmod 0777 /data/eri/eri.bin
+    # [LGE_S][IPSecVPN] 20120327, yhak.kim@lge.com : Authentec IPSecVPN Kernel Module install
+    insmod /system/lib/modules/vpnclient.ko
+    # [LGE_E][IPSecVPN] 20120327, yhak.kim@lge.com : Authentec IPSecVPN Kernel Module install
+
+    # [brian1.cheon@lge.com] begin
+    chown system system /sys/devices/platform/qfuse_status_check/qfuse_status
+    # end       
+
+    # for Widevine Lv1, GB->ICS, permission change (media->system)
+    exec /system/xbin/WVGBCorrect
+
+    # Adjust socket buffer to enlarge TCP receive window for high bandwidth
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+    write /proc/sys/net/ipv4/tcp_syn_retries  1
+
+#CRYPT_S Data Encryption For EAS
+on property:persist.sys.email.crypt=1
+    exec /system/bin/crypt_setup 1
+#CRYPT_E
+
+on post-fs-data
+    chown system system /persist
+    chmod 0771 /persist
+
+    mkdir /persist/app_dme 0771 system system
+    chown system system /persist/app_dme
+    chmod 0771 /persist/app_dme
+
+    mkdir /data/fota 0773 system system
+    chown system system /data/fota
+    chmod 0775 /data/fota
+    chmod 0666 /data/fota/silence.txt
+
+    mkdir /cache/recovery 0774
+    chown system cache /cache/recovery
+    mkdir /cache/recovery/fota 0774
+    chown system system /cache/recovery/fota
+    chmod 0774 /cache/recovery/fota
+
+    mkdir /cache/fota 0777
+    chown system system /cache/fota
+    chmod 0777 /cache/fota
+    
+    mkdir /persist/fota 0773 system system
+    chown system system /persist/fota
+    chmod 0775 /persist/fota
+    chmod 0666 /persist/fota/silence.txt
+    
+
+# [LGE_S][IPSecVPN] 20120327, yhak.kim@lge.com : Authentec IPSecVPN Service & IPSecVpn modules permission change
+service vpnclientpm /system/bin/vpnclientpm -O /data/data/com.ipsec.vpnclient/vpnclientpm.txt
+# uid dropped to system when capabilities are set
+    class main
+    group system net_admin net_raw
+    disabled
+
+service vpncstarter /system/bin/vpncstarter
+    class main
+    user system
+    group system net_admin net_raw
+# [LGE_E][IPSecVPN] 20120327, yhak.kim@lge.com : Authentec IPSecVPN Service & IPSecVpn modules permission change
+
+# 04.12.2011 brian1.cheone@lge.com Playready drm 
+# adding for playready DRM to provision and save the keys
+service prapp /system/bin/prapp
+   class main
+   user root
+   group root
+   disabled
+   oneshot
+
+on property:sys.boot_completed=1
+    start prapp
+    
+# end
+on innopath-fota-boot
+    exec /system/bin/innopath_fota_boot
+
+on property:ssbd.enable=1
+    start ssbd
+
+on property:ssbd.enable=0
+    stop ssbd

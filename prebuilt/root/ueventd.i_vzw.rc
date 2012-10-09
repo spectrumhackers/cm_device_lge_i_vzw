@@ -1,0 +1,26 @@
+# Changed partition layout and size, 20110528
+/dev/block/mmcblk0p15     0660   system     system
+/dev/block/mmcblk0p16     0660   system     system
+/dev/block/mmcblk0p17     0660   system     system
+/dev/block/mmcblk0p18     0660   system     system
+/dev/block/mmcblk0     0660   system     system
+/dev/block/mmcblk0p25     0660   system     system
+# sysfs properties
+/sys/devices/virtual/input/input*   enable      0660  system   input
+/sys/devices/virtual/input/input*   poll_delay  0660  system   input
+/sys/devices/virtual/input/input*   delay       0660  system   input
+/sys/devices/virtual/input/input*   tap_enable  0660  system   input
+/sys/devices/virtual/input/input*   tap_delay   0660  system   input
+/sys/devices/virtual/input/input*   flip_enable 0660  system   input
+/sys/devices/virtual/input/input*   flip_delay  0660  system   input
+/sys/devices/virtual/input/input*   proximity_enable  0660  system   input
+/sys/devices/virtual/input/input*   proximity         0660  system   input
+/sys/devices/virtual/input/input*   light_enable      0660  system   input
+/sys/devices/virtual/input/input*   als               0660  system   input
+/sys/devices/virtual/misc/k3dh_acc_misc*	calibration	0660	system	 input
+# LGE_BROADCAST_TDMB
+/dev/broadcast0           0660  media        media
+# 1Seg Mobile broadcast service taew00k.kang 2011-11-30 [start]
+/dev/isdbt                0660  system   system
+# 1Seg Mobile broadcast service taew00k.kang 2011-11-30 [end]
+

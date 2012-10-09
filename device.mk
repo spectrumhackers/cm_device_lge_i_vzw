@@ -18,13 +18,22 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/init.qcom.rc:root/init.qcom.rc \
-	$(LOCAL_PATH)/init.target.rc:root/init.target.rc \
-	$(LOCAL_PATH)/ueventd.qcom.rc:root/ueventd.qcom.rc
+	$(LOCAL_PATH)/prebuilt/root/init.iproj.rc:root/init.iproj.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.i_vzw.rc:root/init.i_vzw.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.lge.early.rc:root/init.lge.early.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.lge.rc:root/init.lge.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.lge.usb.rc:root/init.lge.usb.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.lge.usb.sh:root/init.lge.usb.sh \
+	$(LOCAL_PATH)/prebuilt/root/init.qcom.rc:root/init.qcom.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.qcom.sh:root/init.qcom.sh \
+	$(LOCAL_PATH)/prebuilt/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.qcom.usb.sh:root/init.qcom.usb.sh \
+	$(LOCAL_PATH)/prebuilt/root/init.rc:root/init.rc \
+	$(LOCAL_PATH)/prebuilt/root/init.target.rc:root/init.target.rc \
+	$(LOCAL_PATH)/prebuilt/root/ueventd.i_vzw.rc:root/ueventd.i_vzw.rc \
+	$(LOCAL_PATH)/prebuilt/root/ueventd.rc:root/ueventd.rc
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/init.lge.usb.rc:root/init.lge.usb.rc \
-	$(LOCAL_PATH)/prebuilt/init.qcom.sh:root/init.qcom.sh \
 	$(LOCAL_PATH)/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
 	$(LOCAL_PATH)/prebuilt/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
 	$(LOCAL_PATH)/prebuilt/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh

@@ -1,0 +1,194 @@
+# on emmc mount the partition containing firmware
+# Changed partition layout and size, 20110528
+on emmc-fs
+# BEGIN: yongmin.jung@lge.com 2011.05.13
+# [i_prj/system/partition] execute e2fsck
+   mkdir /tombstones 0771 system system
+   wait /dev/block/mmcblk0p22
+   exec /system/bin/e2fsck -y /dev/block/mmcblk0p22
+# END: yongmin.jung@lge.com 2011.05.13
+
+   mount ext4 /dev/block/mmcblk0p22 /tombstones nosuid nodev barrier=1 data=ordered
+
+   mkdir /tombstones/modem 0771 system system
+   mkdir /tombstones/mdm 0771 system system
+   mkdir /tombstones/lpass 0771 system system
+
+   mkdir /firmware 0771 system system
+   wait /dev/block/mmcblk0p1
+# END: yongmin.jung@lge.com 2011.05.13
+
+   mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower,umask=0003
+   exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
+   exec /system/bin/sh /system/etc/init.qcom.mdm_links.sh
+
+on post-fs
+   mount ext4 /dev/block/mmcblk0p26 /system ro remount barrier=1 data=ordered
+
+on boot
+# yennie.kang for AMI306
+    chown compass system /dev/k3g_misc
+    chmod 0660 /dev/k3g_misc
+    chown compass system /dev/k3dh_acc_misc
+    chmod 0660 dev/k3dh_acc_misc
+    chown compass system /dev/ami306
+    chmod 0660 dev/ami306
+    chown compass system /dev/ami306daemon
+    chmod 0660 dev/ami306daemon
+    chown compass system /dev/ami306hal
+    chmod 0660 dev/ami306hal
+    mkdir /data/amit 0770 compass system
+    mkdir /data/gesture 0770 compass system
+    chown system system /sys/devices/virtual/input/lge_touch/keyguard
+
+    write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
+
+	# Log Service [START]
+	mkdir /data/logger 0771 system system
+	chown system system /data/logger
+	chmod 0775 /data/logger
+	# Log Service [END]
+	
+	# [2011-0816, lee.sangchul@lge.com] for fake battery mode
+	chown system system /sys/devices/platform/msm-charger/power_supply/battery/pseudo_batt    
+	chown system system /sys/devices/platform/msm-charger/power_supply/battery/block_charging
+	# [2011-0816, lee.sangchul@lge.com]
+
+
+service kickstart /system/bin/qcks l
+    user system
+    group system
+    oneshot
+    disabled
+
+# Start kickstart if csfb or svlte2a target
+on property:ro.baseband=csfb
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    start kickstart
+
+on property:ro.baseband=svlte2a
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    start kickstart
+
+
+service dcvsd0 /system/bin/dcvsd -c 0 -f /data/misc/dcvsd/dcvsd0.conf
+    user root
+    disabled
+
+service dcvsd1 /system/bin/dcvsd -c 1 -f /data/misc/dcvsd/dcvsd1.conf
+    user root
+    disabled
+
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+    user root
+    disabled
+
+service thermald /system/bin/thermald
+    class main
+    user root
+    group root
+
+service qseecomd /system/bin/qseecomd
+   class late_start 
+   user system
+   group system
+   disabled
+
+# LGE_CHANGE [kyungsoo.han@lge.com] 20120501 start qseecomd on post-fs   
+on post-fs
+   start qseecomd
+
+# yennie.kang for AMI304
+service ami304d /system/bin/ami304d
+	class main
+    user compass
+    group system
+
+service qrngd /system/bin/qrngd -f
+    user root
+
+#  Log Service [start]
+# main log
+service logcat-main /system/bin/logcat -v time -b main -f /data/logger/main.log -n 4 -r 4096
+	class main
+	disabled
+	oneshot
+
+on property:persist.service.main.enable=1
+	start logcat-main
+
+on property:persist.service.main.enable=0
+	stop logcat-main
+
+# system log
+service logcat-system /system/bin/logcat -v time -b system -f /data/logger/system.log -n 4 -r 4096
+	class main
+	disabled
+	oneshot
+
+on property:persist.service.system.enable=1
+	start logcat-system
+
+on property:persist.service.system.enable=0
+	stop logcat-system
+
+# radio log	
+service logcat-radio /system/bin/logcat -v time -b radio -f /data/logger/radio.log -n 4 -r 4096
+	class main
+	disabled
+	oneshot
+
+on property:persist.service.radio.enable=1
+	start logcat-radio
+
+on property:persist.service.radio.enable=0
+	stop logcat-radio
+
+# event log
+service logcat-events /system/bin/logcat -v time -b events -f /data/logger/events.log -n 4 -r 4096
+	class main
+	disabled
+	oneshot
+
+on property:persist.service.events.enable=1
+	start logcat-events
+
+on property:persist.service.events.enable=0
+	stop logcat-events
+
+# kernel log	
+#service log-kernel /system/bin/sh /etc/save_kernel_log.sh
+service log-kernel /system/bin/kernellog -f /data/logger/kernel.log -n 4 -r 4096 -t 5000
+	disabled
+	oneshot
+
+on property:persist.service.kernel.enable=1
+	start log-kernel
+
+on property:persist.service.kernel.enable=0
+	stop log-kernel
+
+#  Log Service [END]	
+
+
+
+on property:ro.baseband=svlte2a
+   setprop ro.config.ehrpd true
+   setprop ro.ril.svlte1x true
+
+on property:sys.radio.shutdown=true
+   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+
+# At First Time Format for data & tomestones & caches
+on emmc-fmt
+# data partition wait
+    wait /dev/block/mmcblk0p28
+    exec /system/bin/sh /system/etc/format_first.sh
+
+# last_kmsg Backup
+on early-boot
+    exec /system/bin/sh /system/etc/last_kmsg_backup.sh
+
+

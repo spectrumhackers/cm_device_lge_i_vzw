@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2009-2011, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,16 +27,36 @@
 #
 
 #
+# Function to start sensors for DSPS enabled platforms
+#
+start_sensors()
+{
+    mkdir -p /data/system/sensors
+    touch /data/system/sensors/settings
+    chmod 664 /data/system/sensors/settings
+
+    mkdir -p /data/misc/sensors
+    chmod 775 /data/misc/sensors
+
+    if [ ! -s /data/system/sensors/settings ]; then
+        # If the settings file is empty, enable sensors HAL
+        # Otherwise leave the file with it's current contents
+        echo 1 > /data/system/sensors/settings
+    fi
+    start sensors
+}
+
+#
 # start ril-daemon only for targets on which radio is present
 #
 baseband=`getprop ro.baseband`
 multirild=`getprop ro.multi.rild`
 dsds=`getprop persist.dsds.enabled`
+netmgr=`getprop ro.use_data_netmgrd`
 case "$baseband" in
     "msm" | "csfb" | "svlte2a" | "unknown")
     start ril-daemon
     start qmuxd
-    start netmgrd
     case "$baseband" in
         "svlte2a" | "csfb")
         start qmiproxy
@@ -47,6 +67,10 @@ case "$baseband" in
              "true")
              start ril-daemon1
          esac
+    esac
+    case "$netmgr" in
+        "true")
+        start netmgrd
     esac
 esac
 
@@ -80,6 +104,15 @@ case "$usbchgdisabled" in
 esac
 
 #
+# Suppress default route installation during RA for IPV6; user space will take
+# care of this
+#
+for file in /proc/sys/net/ipv6/conf/*
+do
+  echo 0 > $file/accept_ra_defrtr
+done
+
+#
 # Start gpsone_daemon for SVLTE Type I & II devices
 #
 case "$target" in
@@ -90,6 +123,14 @@ case "$baseband" in
         "svlte2a")
         start gpsone_daemon
         start bridgemgrd
+esac
+case "$target" in
+        "msm7630_surf" | "msm8660" | "msm8960")
+        start quipc_igsn
+esac
+case "$target" in
+        "msm7630_surf" | "msm8660" | "msm8960")
+        start quipc_main
 esac
 
 case "$target" in
@@ -190,15 +231,68 @@ case "$target" in
             ;;
         esac
         ;;
-    "msm8660_surf")
+    "msm8660" )
         platformvalue=`cat /sys/devices/system/soc/soc0/hw_platform`
         case "$platformvalue" in
-         "Fluid")
-         echo 1 > /data/system/sensors/settings
-         start sensors
+            "Fluid")
+                start_sensors
+                setprop ro.sf.lcd_density 240
+                start profiler_daemon;;
+            "Dragon")
+                setprop ro.sound.alsa "WM8903";;
+        esac
+        chown root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
+        chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
+        ;;
+    "msm7627a" )
+        chown root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
+        chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
+        ;;
+    "msm8960")
+        start_sensors
+        chown root.system /sys/devices/platform/msm_otg/msm_hsusb/gadget/wakeup
+        chmod 220 /sys/devices/platform/msm_otg/msm_hsusb/gadget/wakeup
 
-         setprop ro.sf.lcd_density 240
-         start profiler_daemon;;
-         esac
+        # Dynamic Memory Managment (DMM) provides a sys file system to the userspace
+        # that can be used to plug in/out memory that has been configured as 'Movable'.
+        # This unstable memory can be in Active or In-Active State.
+        # Each of which the userspace can request by writing to a sys file.
+
+        # If ro.dev.dmm.dpd.start_address is set here then the target has a memory
+        # configuration that supports DynamicMemoryManagement.
+        mem="/sys/devices/system/memory"
+        op=`cat $mem/movable_start_bytes`
+        case "$op" in
+            "0" )
+                log -p i -t DMM DMM Disabled. movable_start_bytes not set: $op
+            ;;
+
+           "$mem/movable_start_bytes: No such file or directory " )
+                log -p i -t DMM DMM Disabled. movable_start_bytes does not exist: $op
+            ;;
+
+            * )
+                log -p i -t DMM DMM available.
+                movable_start_bytes=0x`cat $mem/movable_start_bytes`
+                log -p i -t DMM movable_start_bytes at $movable_start_bytes
+                block_size_bytes=0x`cat $mem/block_size_bytes`
+                log -p i -t DMM block_size_bytes: $block_size_bytes
+                block=$(($movable_start_bytes/$block_size_bytes))
+                block=11
+
+                chown system.system $mem/memory$block/state
+                chown system.system $mem/probe
+                chown system.system $mem/active
+                chown system.system $mem/remove
+
+                setprop ro.dev.dmm.dpd.start_address $movable_start_bytes
+                setprop ro.dev.dmm.dpd.block $block
+            ;;
+        esac
+        ;;
+    "msm7630_surf" )
+        chown root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
+        chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
+        ;;
 
 esac

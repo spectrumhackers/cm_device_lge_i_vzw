@@ -64,7 +64,7 @@ WPA_SUPPLICANT_VERSION		:= VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER		:= NL80211
 BOARD_HOSTAPD_PRIVATE_LIB	:= lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE		    := bcmdhd
+BOARD_WLAN_DEVICE		:= bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM	:= "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA		:= "/system/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_P2P		:= "/system/etc/firmware/fw_bcmdhd_p2p.bin"
@@ -93,7 +93,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 # Kernel
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_USE_PREBUILT_KERNEL := false
+BOARD_USE_PREBUILT_KERNEL := true
 
 ifeq ($(BOARD_USE_PREBUILT_KERNEL),true)
 # Prebuilt ICS kernel
@@ -104,7 +104,7 @@ TARGET_KERNEL_SOURCE := kernel/lge/VS920
 TARGET_KERNEL_CONFIG := spectrum_defconfig
 endif
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE := androidboot.hardware=i_vzw
 BOARD_FORCE_RAMDISK_ADDRESS := 0x41a00000
 
 ifneq ($(TARGET_PREBUILT_KERNEL_DIR),)
