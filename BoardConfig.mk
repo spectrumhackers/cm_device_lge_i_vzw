@@ -83,9 +83,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 TARGET_PROVIDES_LIBLIGHTS := true
 
-# BOARD_USE_LEGACY_TOUCHSCREEN := true
-
-# XXX: fix these
+# Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 422576128
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
@@ -116,8 +114,8 @@ PRODUCT_COPY_FILES += \
 	$(foreach mod,$(TARGET_PREBUILT_MODULES),$(mod):system/lib/modules/$(notdir $(mod)))
 endif
 
-# On VS920 PlayfulGod's recovery identifies as "vs920" (?)
-TARGET_OTA_ASSERT_DEVICE := i_vzw,vs920
+# Device Assert.. ics, cwm, gb
+TARGET_OTA_ASSERT_DEVICE := i_vzw,vs920,VS920
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
