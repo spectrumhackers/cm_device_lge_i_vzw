@@ -124,3 +124,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase=android-lge \
 	ro.com.google.clientidbase.gmm=android-lge \
 	gsm.operator.iso-country=us
+
+PRODUCT_COPY_FILES := \
+	$(LOCAL_PATH)/prebuilt/720.zip:system/media/bootanimation.zip
