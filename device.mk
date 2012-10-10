@@ -1,4 +1,3 @@
-# XXX: should be full_base_telephony?
 $(call inherit-product, build/target/product/full.mk)
 
 $(call inherit-product, build/target/product/languages_small.mk)
@@ -118,13 +117,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	charger \
 	charger_res_images
-
-
-#PRODUCT_PACKAGES += getbaseband
-
-#PRODUCT_PROPERTY_OVERRIDES += \
-#	ro.sf.lcd_density=320 \
-#	persist.sys.use_16bpp_alpha
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.secure=0 \
