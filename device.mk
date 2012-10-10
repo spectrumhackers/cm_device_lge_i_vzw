@@ -87,7 +87,7 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8660 \
 	copybit.msm8660 \
 	lights.msm8660 \
-	gps.msm8660 \
+	gps.i_vzw \
 	audio.primary.msm8660 \
 	audio_policy.msm8660 \
 	audio.a2dp.default \
@@ -125,5 +125,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase.gmm=android-lge \
 	gsm.operator.iso-country=us
 
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/prebuilt/720.zip:system/media/bootanimation.zip
