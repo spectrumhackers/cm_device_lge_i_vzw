@@ -12,6 +12,9 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 # Inherit device configuration
 $(call inherit-product, device/lge/i_vzw/full_i_vzw.mk)
 
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/prebuilt/720.zip:system/media/bootanimation.zip
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := i_vzw
 PRODUCT_NAME := cm_i_vzw

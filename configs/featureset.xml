@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Profiles>
+  <FeatureSet>
+        <item name="support_cdg2_test">false</item> 
+        <item name="support_nbpcb">true</item>
+        <item name="support_assisted_dialing">true</item>
+        <item name="support_network_change_auto_retry">true</item> 
+        <item name="support_send_burst_dtmf">true</item> 
+        <item name="support_cdma_forward_burst_dtmf">true</item> 
+  	    <item name="vzw_ecm_exit">true</item>
+        <item name="ota_for_vzw">true</item>
+        <item name="vzw_eri">true</item> 
+        <item name="cdma_cause_code_display">true</item>
+		<item name="cdma_priority_indicator">true</item>
+        <item name="cdma_privacy_indicator">true</item>
+        <item name="cdma_sms_callback">true</item>
+        <item name="cdma_sms_display_mode">true</item>
+        <item name="cdma_sms_cdg2">false</item>
+        <item name="cdma_sms_nbpcd">true</item>
+        <item name="cdma_urgent_vmwi">true</item>
+        <item name="vzw_sms_retry_scheme">true</item>
+        <item name="vzw_ems_segment_timer">true</item>
+        <item name="vzw_sms_pctest">false</item>
+        <item name="vzw_sms_fromvtext">true</item>
+        <item name="cmas">true</item>
+        <item name="email_over_sms">true</item>
+        <item name="sms_signature">true</item>
+        <item name="app_directed_sms">true</item>
+        <item name="sms_over_lgims">true</item>
+        <item name="send_sms_1x_not_lte">true</item>
+        <item name="vzw_snc_email_sms">true</item>
+        <item name="store_on_usim_storage">true</item>
+        <item name="control_uicc_storage">true</item>
+        <item name="seperate_processing_sms_uicc">true</item>
+        <item name="copy_submit_to_uicc">true</item>
+        <item name="parse_email_on_uicc">true</item>
+        <item name="set_sms_character_encoding">true</item>
+        <item name="sms_gcf_config">false</item>
+		<item name="uicc_csim">true</item>
+		<item name="use_update_for_copy2sim">true</item>        
+        <item name="cdma_kr_testbed_mms_receive">true</item>
+		<item name="voicemail_urgent">true</item>
+	</FeatureSet>
+</Profiles>	

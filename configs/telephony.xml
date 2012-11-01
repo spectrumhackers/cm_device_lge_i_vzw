@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Profiles>
+	
+	<!-- Operator -->
+	<!-- No SIM or SIM Roaming default profile -->
+	<Profile operator="VZW" country="US" mcc="310" mnc="04" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>
+	<Profile operator="VZW" country="US" mcc="310" mnc="05" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>			
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>
+	<Profile operator="VZW" country="US" mcc="310" mnc="12" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>
+	<Profile operator="VZW" country="US" mcc="311" mnc="480" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="481" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="482" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="483" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="484" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="485" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="486" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="487" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="488" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="311" mnc="489" gid="" spn="" imsi="">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>	
+	<Profile operator="VZW" country="US" mcc="" mnc="" gid="" spn="" imsi="" default="true">
+		<item name="VMS"></item>
+		<item name="RVMS"></item>
+		<item name="ECCList">911,112,#911,*911</item>		
+		<item name="SEND_CALL_WITHOUT_CALL">0,00</item>
+		<item name="PREFERRED_NETWORK_MODE">8</item>
+	</Profile>		
+
+</Profiles>
