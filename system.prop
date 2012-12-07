@@ -31,8 +31,10 @@ persist.rild.nitz_short_ons_3=
 persist.rild.ril.ltedr=0
 persist.rild.ril.ltedrtable=max_retries=infinite,10000
 
-ro.telephony.ril_class=LGEQualcommUiccRIL
+ro.telephony.ril_class=LGEQualcommRIL
 ro.telephony.ril.v3=icccardstatus,qcomuiccstack
+# Use this to skip NV
+ro.telephony.ril.v3=skipCdmaSubcription
 ro.cdma.subscribe_on_ruim_ready=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
